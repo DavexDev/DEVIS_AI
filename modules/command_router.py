@@ -7,12 +7,14 @@ import os
 from modules.math_engine import derivada, integral, simplificar, det_matriz, inv_matriz
 from executor.ollama_connector import OllamaConnector
 from executor.octave_runner import OctaveRunner
+from modules.flutter_generator import FlutterGenerator
 
 # Ruta base de la base de conocimiento
 _KNOWLEDGE_DIR = os.path.join(os.path.dirname(__file__), "..", "knowledge")
 
-_ai     = OllamaConnector()
-_octave = OctaveRunner()
+_ai       = OllamaConnector()
+_octave   = OctaveRunner()
+_flutter  = FlutterGenerator(ai_connector=_ai)  # pasa la IA si está disponible
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -76,6 +78,7 @@ HELP_TEXT = """
   ejemplo python    Muestra ejemplo de código Python
   ejemplo dart      Muestra ejemplo de Dart/estructuras de datos
   ejecutar matlab   Ejecuta código MATLAB en GNU Octave (multi-línea)
+  generar flutter   Genera código Flutter desde descripción en lenguaje natural
   ia                Consulta a la IA local (TinyLlama/Ollama)
   help              Muestra esta ayuda
   exit              Cerrar DEVIS
@@ -191,6 +194,13 @@ class CommandRouter:
         if "ejecutar" in cmd and "matlab" in cmd:
             # Señal especial: el CLI entra en modo multi-línea
             return "__multiline_matlab__"
+
+        # ── Generar Flutter ───────────────────────────────────────────────────
+        if "generar" in cmd and "flutter" in cmd:
+            desc = self._extract_arg(user_input, "flutter") or _ask(
+                "Describe la pantalla/componente (ej: 'pantalla de login con validación')"
+            )
+            return _flutter.generate(desc)
 
         # ── IA local ──────────────────────────────────────────────────────────
         if cmd.startswith("ia"):

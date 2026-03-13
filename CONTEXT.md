@@ -37,7 +37,8 @@ DEVIS_AI/
 ├── modules/
 │   ├── __init__.py
 │   ├── math_engine.py             ← motor matemático (5 operaciones)
-│   └── command_router.py          ← enrutador de comandos CLI
+│   ├── command_router.py          ← enrutador de comandos CLI
+│   └── flutter_generator.py       ← generador de código Flutter (v0.5)
 ├── knowledge/
 │   ├── matlab/          (22 archivos)
 │   │   ├── graficas.md, matrices.md, ode.md, estadistica.md
@@ -177,7 +178,7 @@ exit              → salir
 | **v0.2** | ✅ **Completo** | IA local TinyLlama vía Ollama (health-check + POST real)   |
 | **v0.3** | ✅ **Completo** | Base de conocimiento expandida (40 archivos, 4 categorías) |
 | **v0.4** | ✅ **Completo** | Ejecución MATLAB/Octave vía subprocess (modo multi-línea)  |
-| v0.5     | 🔜 Pendiente    | Generador de código Flutter                                |
+| **v0.5** | ✅ **Completo** | Generador de código Flutter con plantillas + IA opcional   |
 
 ---
 

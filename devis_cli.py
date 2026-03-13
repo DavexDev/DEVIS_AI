@@ -22,8 +22,8 @@ BANNER = r"""
 ║    ██████╔╝███████╗ ╚████╔╝ ██║███████║             ║
 ║    ╚═════╝ ╚══════╝  ╚═══╝  ╚═╝╚══════╝             ║
 ║                                                      ║
-║    Development Intelligent System  v0.4              ║
-║    Matemáticas · MATLAB · Flutter · Octave           ║
+║    Development Intelligent System  v0.5              ║
+║    Matemáticas · MATLAB · Flutter · Octave · IA      ║
 ╚══════════════════════════════════════════════════════╝
   Escribe 'help' para ver los comandos disponibles.
   Escribe 'exit' para salir.
