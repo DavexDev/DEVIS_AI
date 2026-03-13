@@ -48,9 +48,9 @@ DEVIS_AI/
 │   │   ├── subplots.md, superficie_3d.md, formatos_numericos.md
 │   │   ├── reshape_matriz.md, vector_incremento.md, matriz_rangos.md
 │   │   └── lectura_csv.md, grafica_barras.md, guardar_variables.md, numeros_aleatorios.md
-│   ├── flutter/         (7 archivos)
+│   ├── flutter/         (8 archivos)
 │   │   ├── login.md, widgets.md, navegacion.md, estado.md
-│   │   └── contador_basico.md, lista_notas.md, widget_personalizado.md
+│   │   └── contador_basico.md, lista_notas.md, widget_personalizado.md, web.md
 │   ├── python/          (2 archivos)
 │   │   └── numpy.md, pandas.md
 │   └── dart/            (8 archivos — estructuras de datos)
@@ -59,7 +59,8 @@ DEVIS_AI/
 │       └── arbol_avl.md, propiedades_arbol.md, equilibrio_arbol.md
 ├── executor/
 │   ├── __init__.py
-│   └── ollama_connector.py        ← cliente TinyLlama activo (v0.2)
+│   ├── ollama_connector.py        ← cliente TinyLlama activo (v0.2)
+│   └── octave_runner.py           ← ejecutor MATLAB/Octave (v0.4)
 ├── devis_cli.py                   ← entrada principal / CLI
 ├── requirements.txt               ← sympy>=1.12, requests>=2.28
 ├── .gitignore
@@ -174,22 +175,19 @@ exit              → salir
 | -------- | --------------- | ---------------------------------------------------------- |
 | **v0.1** | ✅ **Completo** | CLI + motor matemático + base de conocimiento              |
 | **v0.2** | ✅ **Completo** | IA local TinyLlama vía Ollama (health-check + POST real)   |
-| **v0.3** | ✅ **Completo** | Base de conocimiento expandida (39 archivos, 4 categorías) |
-| v0.4     | 🔜 Pendiente    | Ejecución de código MATLAB/Octave                          |
+| **v0.3** | ✅ **Completo** | Base de conocimiento expandida (40 archivos, 4 categorías) |
+| **v0.4** | ✅ **Completo** | Ejecución MATLAB/Octave vía subprocess (modo multi-línea)  |
 | v0.5     | 🔜 Pendiente    | Generador de código Flutter                                |
 
 ---
 
-## Próximos pasos sugeridos (v0.4)
+## Próximos pasos sugeridos (v0.5)
 
-```bash
-# Instalar GNU Octave (compatible con MATLAB)
-sudo apt install octave -y
-
-# Plan: módulo executor/octave_runner.py
-# - Recibe código MATLAB/Octave como string
-# - Lo ejecuta con subprocess + octave --no-gui
-# - Devuelve stdout/stderr al CLI
+```
+Idea: generador de código Flutter
+- El usuario describe una pantalla en lenguaje natural
+- DEVIS genera el código Dart/Flutter correspondiente
+- Podría usar la IA local (TinyLlama) o plantillas predefinidas
 ```
 
 ---

@@ -22,8 +22,8 @@ BANNER = r"""
 ║    ██████╔╝███████╗ ╚████╔╝ ██║███████║             ║
 ║    ╚═════╝ ╚══════╝  ╚═══╝  ╚═╝╚══════╝             ║
 ║                                                      ║
-║    Development Intelligent System  v0.3              ║
-║    Matemáticas · MATLAB · Flutter                    ║
+║    Development Intelligent System  v0.4              ║
+║    Matemáticas · MATLAB · Flutter · Octave           ║
 ╚══════════════════════════════════════════════════════╝
   Escribe 'help' para ver los comandos disponibles.
   Escribe 'exit' para salir.
@@ -50,6 +50,34 @@ def main() -> None:
             # El router señala salida explícita (comando 'exit')
             print("DEVIS shutting down...")
             break
+
+        # ── Modo multi-línea para ejecutar MATLAB/Octave ─────────────────────
+        if response == "__multiline_matlab__":
+            print(
+                "\n  Ingresa código MATLAB línea a línea."
+                "\n  Escribe 'fin' para ejecutar, 'cancelar' para salir.\n"
+            )
+            lines = []
+            while True:
+                try:
+                    line = input("  >> ").rstrip()
+                except (KeyboardInterrupt, EOFError):
+                    print("\n  Cancelado.")
+                    lines = []
+                    break
+                if line.lower() == "fin":
+                    break
+                if line.lower() == "cancelar":
+                    lines = []
+                    break
+                lines.append(line)
+
+            if lines:
+                code = "\n".join(lines)
+                print()  # línea en blanco antes de la salida
+                print(router.run_octave(code))
+                print()  # línea en blanco después
+            continue
 
         print(response)
 

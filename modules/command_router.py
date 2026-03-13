@@ -6,11 +6,13 @@ Enrutador central de comandos de DEVIS CLI.
 import os
 from modules.math_engine import derivada, integral, simplificar, det_matriz, inv_matriz
 from executor.ollama_connector import OllamaConnector
+from executor.octave_runner import OctaveRunner
 
 # Ruta base de la base de conocimiento
 _KNOWLEDGE_DIR = os.path.join(os.path.dirname(__file__), "..", "knowledge")
 
-_ai = OllamaConnector()
+_ai     = OllamaConnector()
+_octave = OctaveRunner()
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -73,6 +75,7 @@ HELP_TEXT = """
   ejemplo flutter   Muestra ejemplo de código Flutter
   ejemplo python    Muestra ejemplo de código Python
   ejemplo dart      Muestra ejemplo de Dart/estructuras de datos
+  ejecutar matlab   Ejecuta código MATLAB en GNU Octave (multi-línea)
   ia                Consulta a la IA local (TinyLlama/Ollama)
   help              Muestra esta ayuda
   exit              Cerrar DEVIS
@@ -96,6 +99,11 @@ HELP_TEXT = """
 
 class CommandRouter:
     """Enruta comandos del usuario al módulo correspondiente."""
+
+    @staticmethod
+    def run_octave(code: str) -> str:
+        """Ejecuta un bloque de código MATLAB/Octave y devuelve la salida."""
+        return _octave.run(code)
 
     def route(self, user_input: str) -> str | None:
         """
@@ -178,6 +186,11 @@ class CommandRouter:
                 f"  Python   : {_list_knowledge('python')}\n"
                 f"  Dart     : {_list_knowledge('dart')}"
             )
+
+        # ── Ejecutar MATLAB/Octave ─────────────────────────────────────────────
+        if "ejecutar" in cmd and "matlab" in cmd:
+            # Señal especial: el CLI entra en modo multi-línea
+            return "__multiline_matlab__"
 
         # ── IA local ──────────────────────────────────────────────────────────
         if cmd.startswith("ia"):
