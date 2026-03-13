@@ -71,12 +71,16 @@ HELP_TEXT = """
   inv               Inversa de una matriz cuadrada
   ejemplo matlab    Muestra ejemplo de código MATLAB
   ejemplo flutter   Muestra ejemplo de código Flutter
-  ia                Consulta a la IA local (v0.2)
+  ejemplo python    Muestra ejemplo de código Python
+  ia                Consulta a la IA local (TinyLlama/Ollama)
   help              Muestra esta ayuda
   exit              Cerrar DEVIS
   ─────────────────────────────────────────────────────
   Expresiones aceptadas: x^2 + 3x, sin(x), e^x, etc.
   Matrices: [[1,2],[3,4]]
+  Temas MATLAB:   graficas, matrices, ode, estadistica
+  Temas Flutter:  login, widgets, navegacion, estado
+  Temas Python:   numpy, pandas
 """
 
 
@@ -142,11 +146,19 @@ class CommandRouter:
             )
             return _load_knowledge("flutter", topic)
 
+        # ── Ejemplo Python ────────────────────────────────────────────────────
+        if "python" in cmd and "ejemplo" in cmd:
+            topic = self._extract_topic(user_input, ("python",)) or _ask(
+                f"Tema ({_list_knowledge('python')})"
+            )
+            return _load_knowledge("python", topic)
+
         # ── Listar ejemplos ───────────────────────────────────────────────────
         if cmd.startswith("ejemplos"):
             return (
-                f"  MATLAB  : {_list_knowledge('matlab')}\n"
-                f"  Flutter : {_list_knowledge('flutter')}"
+                f"  MATLAB   : {_list_knowledge('matlab')}\n"
+                f"  Flutter  : {_list_knowledge('flutter')}\n"
+                f"  Python   : {_list_knowledge('python')}"
             )
 
         # ── IA local ──────────────────────────────────────────────────────────

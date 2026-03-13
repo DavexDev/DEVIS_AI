@@ -22,7 +22,7 @@ BANNER = r"""
 ║    ██████╔╝███████╗ ╚████╔╝ ██║███████║             ║
 ║    ╚═════╝ ╚══════╝  ╚═══╝  ╚═╝╚══════╝             ║
 ║                                                      ║
-║    Development Intelligent System  v0.2              ║
+║    Development Intelligent System  v0.3              ║
 ║    Matemáticas · MATLAB · Flutter                    ║
 ╚══════════════════════════════════════════════════════╝
   Escribe 'help' para ver los comandos disponibles.
