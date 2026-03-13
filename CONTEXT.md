@@ -39,19 +39,24 @@ DEVIS_AI/
 │   ├── math_engine.py             ← motor matemático (5 operaciones)
 │   └── command_router.py          ← enrutador de comandos CLI
 ├── knowledge/
-│   ├── matlab/
-│   │   ├── graficas.md            ← ejemplo fplot, grid, title
-│   │   ├── matrices.md            ← ejemplo det, inv, rank
-│   │   ├── ode.md                 ← ecuaciones diferenciales (ode45, dsolve)
-│   │   └── estadistica.md        ← mean, std, histfit, corrcoef
-│   ├── flutter/
-│   │   ├── login.md               ← pantalla login completa (Dart)
-│   │   ├── widgets.md             ← Scaffold, Card, Dialog, BottomNav
-│   │   ├── navegacion.md          ← Navigator, go_router, rutas nombradas
-│   │   └── estado.md              ← setState, Provider, Riverpod
-│   └── python/
-│       ├── numpy.md               ← arrays, operaciones vectoriales
-│       └── pandas.md              ← DataFrame, read_csv, groupby
+│   ├── matlab/          (22 archivos)
+│   │   ├── graficas.md, matrices.md, ode.md, estadistica.md
+│   │   ├── multiplicacion_matrices.md, suma_matrices.md
+│   │   ├── transpuesta_matrices.md, matrices_automaticas.md
+│   │   ├── graficas_trigonometricas.md, grafica_polar.md
+│   │   ├── cardioide_polar.md, grafica_3d_resorte.md
+│   │   ├── subplots.md, superficie_3d.md, formatos_numericos.md
+│   │   ├── reshape_matriz.md, vector_incremento.md, matriz_rangos.md
+│   │   └── lectura_csv.md, grafica_barras.md, guardar_variables.md, numeros_aleatorios.md
+│   ├── flutter/         (7 archivos)
+│   │   ├── login.md, widgets.md, navegacion.md, estado.md
+│   │   └── contador_basico.md, lista_notas.md, widget_personalizado.md
+│   ├── python/          (2 archivos)
+│   │   └── numpy.md, pandas.md
+│   └── dart/            (8 archivos — estructuras de datos)
+│       ├── listas_enlazadas.md, pilas.md, colas.md
+│       ├── arbol_binario.md, recorridos_arbol.md
+│       └── arbol_avl.md, propiedades_arbol.md, equilibrio_arbol.md
 ├── executor/
 │   ├── __init__.py
 │   └── ollama_connector.py        ← cliente TinyLlama activo (v0.2)
@@ -125,17 +130,11 @@ integral          → integral indefinida de f(x)
 simplificar       → simplificación algebraica
 det               → determinante de matriz cuadrada
 inv               → inversa de matriz cuadrada
-ejemplo matlab graficas     → código fplot
-ejemplo matlab matrices     → código det/inv
-ejemplo matlab ode          → ecuaciones diferenciales
-ejemplo matlab estadistica  → estadística descriptiva
-ejemplo flutter login       → pantalla login Dart
-ejemplo flutter widgets     → referencia widgets
-ejemplo flutter navegacion  → rutas y navegación
-ejemplo flutter estado      → manejo de estado
-ejemplo python numpy        → arrays NumPy
-ejemplo python pandas       → DataFrames Pandas
-ejemplos          → lista temas disponibles
+ejemplo matlab <tema>    → 22 temas disponibles
+ejemplo flutter <tema>   → 7 temas disponibles
+ejemplo python <tema>    → numpy, pandas
+ejemplo dart <tema>      → 8 temas de estructuras de datos
+ejemplos          → lista todas las categorías y temas
 ia <consulta>     → IA local TinyLlama (Ollama)
 help              → ayuda
 exit              → salir
@@ -145,16 +144,16 @@ exit              → salir
 
 ## Decisiones de diseño tomadas
 
-| Decisión              | Elección                                | Razón                                                |
-| --------------------- | --------------------------------------- | ---------------------------------------------------- |
-| Parser de expresiones | `sympy.parsing` con transformaciones    | Más robusto que regex; soporta `sin(x)`, `e^x`, etc. |
-| Sintaxis de entrada   | Natural (`x^2 + 3x`)                    | Más cómodo para el usuario                           |
-| Matrices              | `ast.literal_eval`                      | Seguro, sin `eval()`                                 |
-| Modelo IA             | TinyLlama vía Ollama                    | ~637 MB, corre en laptop sin GPU                     |
-| Versión IA            | Stub en v0.1, activo en v0.2            | Interfaz definida sin romper el router               |
-| Dependencias v0.1     | Solo `sympy`                            | Sin peso extra                                       |
-| Dependencias v0.2     | `sympy` + `requests`                    | Mínimas para HTTP a Ollama                           |
-| Knowledge v0.3        | 3 categorías: matlab / flutter / python | Cobertura ampliada sin cambiar el router             |
+| Decisión              | Elección                                       | Razón                                                |
+| --------------------- | ---------------------------------------------- | ---------------------------------------------------- |
+| Parser de expresiones | `sympy.parsing` con transformaciones           | Más robusto que regex; soporta `sin(x)`, `e^x`, etc. |
+| Sintaxis de entrada   | Natural (`x^2 + 3x`)                           | Más cómodo para el usuario                           |
+| Matrices              | `ast.literal_eval`                             | Seguro, sin `eval()`                                 |
+| Modelo IA             | TinyLlama vía Ollama                           | ~637 MB, corre en laptop sin GPU                     |
+| Versión IA            | Stub en v0.1, activo en v0.2                   | Interfaz definida sin romper el router               |
+| Dependencias v0.1     | Solo `sympy`                                   | Sin peso extra                                       |
+| Dependencias v0.2     | `sympy` + `requests`                           | Mínimas para HTTP a Ollama                           |
+| Knowledge v0.3        | 4 categorías: matlab / flutter / python / dart | Cobertura ampliada sin cambiar el router             |
 
 ---
 
@@ -171,13 +170,13 @@ exit              → salir
 
 ## Hoja de ruta
 
-| Versión  | Estado             | Contenido                                                   |
-| -------- | ------------------ | ----------------------------------------------------------- |
-| **v0.1** | ✅ **Completo**    | CLI + motor matemático + base de conocimiento               |
-| **v0.2** | ✅ **Completo**    | IA local TinyLlama vía Ollama (health-check + POST real)    |
-| **v0.3** | 🔄 **En progreso** | Base de conocimiento expandida (+python, +flutter, +matlab) |
-| v0.4     | 🔜 Pendiente       | Ejecución de código MATLAB/Octave                           |
-| v0.5     | 🔜 Pendiente       | Generador de código Flutter                                 |
+| Versión  | Estado          | Contenido                                                  |
+| -------- | --------------- | ---------------------------------------------------------- |
+| **v0.1** | ✅ **Completo** | CLI + motor matemático + base de conocimiento              |
+| **v0.2** | ✅ **Completo** | IA local TinyLlama vía Ollama (health-check + POST real)   |
+| **v0.3** | ✅ **Completo** | Base de conocimiento expandida (39 archivos, 4 categorías) |
+| v0.4     | 🔜 Pendiente    | Ejecución de código MATLAB/Octave                          |
+| v0.5     | 🔜 Pendiente    | Generador de código Flutter                                |
 
 ---
 

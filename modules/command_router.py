@@ -72,15 +72,25 @@ HELP_TEXT = """
   ejemplo matlab    Muestra ejemplo de código MATLAB
   ejemplo flutter   Muestra ejemplo de código Flutter
   ejemplo python    Muestra ejemplo de código Python
+  ejemplo dart      Muestra ejemplo de Dart/estructuras de datos
   ia                Consulta a la IA local (TinyLlama/Ollama)
   help              Muestra esta ayuda
   exit              Cerrar DEVIS
   ─────────────────────────────────────────────────────
   Expresiones aceptadas: x^2 + 3x, sin(x), e^x, etc.
   Matrices: [[1,2],[3,4]]
-  Temas MATLAB:   graficas, matrices, ode, estadistica
-  Temas Flutter:  login, widgets, navegacion, estado
+  Temas MATLAB:   graficas, matrices, ode, estadistica, multiplicacion_matrices,
+                  graficas_trigonometricas, grafica_polar, cardioide_polar,
+                  reshape_matriz, grafica_3d_resorte, suma_matrices,
+                  transpuesta_matrices, matrices_automaticas, formatos_numericos,
+                  subplots, superficie_3d, lectura_csv, grafica_barras,
+                  vector_incremento, matriz_rangos, guardar_variables,
+                  numeros_aleatorios
+  Temas Flutter:  login, widgets, navegacion, estado, contador_basico,
+                  lista_notas, widget_personalizado
   Temas Python:   numpy, pandas
+  Temas Dart:     listas_enlazadas, pilas, colas, arbol_binario,
+                  recorridos_arbol, arbol_avl, propiedades_arbol, equilibrio_arbol
 """
 
 
@@ -153,12 +163,20 @@ class CommandRouter:
             )
             return _load_knowledge("python", topic)
 
+        # ── Ejemplo Dart ─────────────────────────────────────────────────────
+        if "dart" in cmd and "ejemplo" in cmd:
+            topic = self._extract_topic(user_input, ("dart",)) or _ask(
+                f"Tema ({_list_knowledge('dart')})"
+            )
+            return _load_knowledge("dart", topic)
+
         # ── Listar ejemplos ───────────────────────────────────────────────────
         if cmd.startswith("ejemplos"):
             return (
                 f"  MATLAB   : {_list_knowledge('matlab')}\n"
                 f"  Flutter  : {_list_knowledge('flutter')}\n"
-                f"  Python   : {_list_knowledge('python')}"
+                f"  Python   : {_list_knowledge('python')}\n"
+                f"  Dart     : {_list_knowledge('dart')}"
             )
 
         # ── IA local ──────────────────────────────────────────────────────────
