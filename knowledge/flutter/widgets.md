@@ -1,6 +1,16 @@
 # Flutter — Widgets Comunes
 
+## Ejecutar en Web
+
+```bash
+flutter run -d chrome       # desarrollo
+flutter build web           # producción → build/web/
+```
+
+> Todos los widgets de esta referencia funcionan en Flutter Web sin modificaciones.
+
 ## Descripción
+
 Referencia rápida de los widgets más usados en Flutter.
 
 ## Scaffold + AppBar + FloatingActionButton

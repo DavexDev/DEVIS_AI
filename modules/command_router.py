@@ -87,7 +87,7 @@ HELP_TEXT = """
                   vector_incremento, matriz_rangos, guardar_variables,
                   numeros_aleatorios
   Temas Flutter:  login, widgets, navegacion, estado, contador_basico,
-                  lista_notas, widget_personalizado
+                  lista_notas, widget_personalizado, web
   Temas Python:   numpy, pandas
   Temas Dart:     listas_enlazadas, pilas, colas, arbol_binario,
                   recorridos_arbol, arbol_avl, propiedades_arbol, equilibrio_arbol

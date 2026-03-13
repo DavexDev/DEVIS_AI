@@ -1,5 +1,22 @@
 # Flutter — App Básica con Contador (StatefulWidget)
 
+## Ejecutar en Web
+
+```bash
+# Crear proyecto (si no existe)
+flutter create mi_app
+cd mi_app
+
+# Correr en Chrome
+flutter run -d chrome
+
+# Compilar para producción web
+flutter build web
+# Resultado en: build/web/
+```
+
+> **Nota:** Flutter Web no requiere emulador. Todo corre directamente en el navegador.
+
 ## Descripción
 
 App con contador que se incrementa y decrementa usando dos `FloatingActionButton`.

@@ -1,6 +1,15 @@
 # Flutter — Pantalla de Login
 
+## Ejecutar en Web
+
+```bash
+flutter run -d chrome
+```
+
+> En web, los `TextFormField` de tipo `password` muestran el teclado virtual del navegador automáticamente.
+
 ## Descripción
+
 Pantalla de inicio de sesión con validación de formulario usando
 `Scaffold`, `TextFormField`, `ElevatedButton` y `Form`.
 
@@ -141,6 +150,7 @@ class _LoginPageState extends State<LoginPage> {
 ```
 
 ## Resultado esperado
+
 - Pantalla centrada con ícono DEVIS, campo de email con validación,
   campo de contraseña con toggle de visibilidad, y botón de login.
 - Al pulsar el botón con datos válidos aparece un SnackBar de confirmación.

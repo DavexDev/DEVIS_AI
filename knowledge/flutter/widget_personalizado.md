@@ -1,5 +1,13 @@
 # Flutter — Widgets Personalizados (StatelessWidget con parámetros)
 
+## Ejecutar en Web
+
+```bash
+flutter run -d chrome
+```
+
+> Los widgets personalizados funcionan igual en web, móvil y desktop. No requieren ajustes.
+
 ## Descripción
 
 Cómo crear un `StatelessWidget` reutilizable que recibe parámetros desde el exterior.

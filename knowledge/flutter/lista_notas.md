@@ -1,5 +1,14 @@
 # Flutter — Lista de Notas / Registros
 
+## Ejecutar en Web
+
+```bash
+flutter run -d chrome       # desarrollo con hot reload
+flutter build web           # compilar para producción
+```
+
+> **Nota:** Flutter Web no requiere emulador ni dispositivo físico.
+
 ## Descripción
 
 App con `TextField` para ingresar registros, lista dinámica con `ListView.builder`,

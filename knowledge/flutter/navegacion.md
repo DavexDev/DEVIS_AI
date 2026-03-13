@@ -1,5 +1,13 @@
 # Flutter — Navegación y Rutas
 
+## Ejecutar en Web
+
+```bash
+flutter run -d chrome
+```
+
+> En Flutter Web, `go_router` es la opción **recomendada** porque sincroniza las rutas con la URL del navegador (`/detalle/42` aparece en la barra de direcciones). `Navigator.push` también funciona pero no actualiza la URL.
+
 ## Navigator básico (push / pop)
 
 ```dart

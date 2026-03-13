@@ -1,5 +1,13 @@
 # Flutter — Manejo de Estado
 
+## Ejecutar en Web
+
+```bash
+flutter run -d chrome
+```
+
+> `setState`, `Provider` y `Riverpod` funcionan exactamente igual en Flutter Web. No hay diferencias de API.
+
 ## setState — Estado local (StatefulWidget)
 
 ```dart
